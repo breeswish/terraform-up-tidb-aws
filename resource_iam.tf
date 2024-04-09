@@ -1,5 +1,5 @@
 resource "aws_iam_policy" "ec2_policy" {
-  name_prefix = local.name
+  name_prefix = local.namespace
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -13,7 +13,7 @@ resource "aws_iam_policy" "ec2_policy" {
 }
 
 resource "aws_iam_role" "ec2_role" {
-  name_prefix = local.name
+  name_prefix = local.namespace
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -36,6 +36,6 @@ resource "aws_iam_policy_attachment" "ec2_policy_role" {
 }
 
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name_prefix = local.name
+  name_prefix = local.namespace
   role = aws_iam_role.ec2_role.name
 }

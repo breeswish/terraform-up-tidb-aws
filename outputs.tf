@@ -1,5 +1,5 @@
 output "ssh-center" {
-  value = "ssh ubuntu@${aws_instance.center.public_ip}"
+  value = "ssh ${local.username}@${aws_instance.center.public_ip}"
 }
 
 output "url-tidb-dashboard" {
@@ -11,17 +11,17 @@ output "url-grafana" {
 }
 
 output "private-ip-tidb" {
-  value = aws_instance.tidb.*.private_ip
+  value = local.tidb_private_ips
 }
 
 output "private-ip-tikv" {
-  value = aws_instance.tikv.*.private_ip
+  value = local.tikv_private_ips
 }
 
 output "private-ip-tiflash" {
-  value = aws_instance.tiflash.*.private_ip
+  value = local.tiflash_private_ips
 }
 
 output "private-ip-pd" {
-  value = aws_instance.pd.*.private_ip
+  value = local.pd_private_ip
 }

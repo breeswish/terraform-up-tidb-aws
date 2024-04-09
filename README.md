@@ -79,9 +79,8 @@ tidb-dashboard = "http://<pd_vm_ip>:2379/dashboard"
 You can now connect to the center VM and deploy a TiDB cluster in these VMs:
 
 ```shell
-ssh ubuntu@<center_vm_ip>
-# or
-# ssh -i ./master_key ubuntu@<center_vm_ip>
+# ssh to the host
+`terraform output -raw ssh-center`
 
 # The topology.yaml is already created for you
 tiup cluster deploy tidb-test nightly ./topology.yaml --user ubuntu -i ~/.ssh/id_rsa --yes
@@ -93,7 +92,9 @@ tiup cluster start tidb-test
 A HAProxy is deployed in the Center VM, load balancing multiple TiDB instances:
 
 ```shell
-ssh ubuntu@<center_vm_ip>
+# ssh to the host
+`terraform output -raw ssh-center`
+
 mysql -u root --host 127.0.0.1 --port 4000
 ```
 
@@ -107,16 +108,16 @@ terraform destroy -auto-approve
 
 ## Features
 
-| Status | Feature                                    |
-| ------ | ------------------------------------------ |
-| ✅     | Ubuntu 20.04 (x86_64)                      |
-| ✅     | Intra-host public key authentication       |
-| ✅     | HAProxy for multiple TiDB instances        |
-| ✅     | Expose PD and Grafana for public access    |
-| ✅     | Customize instance count and size          |
-| ✅     | Enable core dump                           |
-| ✅     | With zsh                                   |
-| ✅     | TiDB recommended kernal parameters         |
-| ✅     | Support TiFlash                            |
-| ✅     | Instance size is identical with TiDB Cloud |
+| Status | Feature                                     |
+| ------ | ------------------------------------------- |
+| ✅     | Ubuntu 22.04 (x86_64)                       |
+| ✅     | Intra-host public key authentication        |
+| ✅     | HAProxy for multiple TiDB instances         |
+| ✅     | Expose PD and Grafana for public access     |
+| ✅     | Customize instance count and size           |
+| ✅     | Enable core dump                            |
+| ✅     | With zsh                                    |
+| ✅     | TiDB recommended kernal parameters          |
+| ✅     | Support TiFlash                             |
+| ✅     | Instance size is identical with TiDB Cloud  |
 | ✅     | EC2 IAM Profile to access S3 without AK, SK |

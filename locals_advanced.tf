@@ -2,8 +2,13 @@
 
 locals {
   # image is region-local. If you changed region, please also change image.
+  # AMIs of each region (Ubuntu 22.04 + OMZ + KernelTunes):
+  # us-east-1	ami-0e2732470fc684140
+  # us-east-2	ami-05cda54fbc39e2381
+  # us-west-1	ami-0575bfdeb6f59b5d8
+  # us-west-2	ami-003e5556ddc999e13
   region = "us-west-2"
-  image  = "ami-03f65b8614a860c29" # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2023-05-16
+  image  = "ami-003e5556ddc999e13"
 
   # If you want to change instance type, ensure that GP3 EBS is available in the instance type.
   tidb_instance    = "c5.2xlarge"
